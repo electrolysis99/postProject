@@ -7,6 +7,8 @@ Do note that I didnt import vendor and node module as this project is using
 2. Jetstream
 3. Livewire
 
+**UPDATED. I've uploaded this project using git clone.
+
 In order to demo this system, 
 1. Create PostingController as well as Posting Model
 2. connect DB with db name 'postings'
