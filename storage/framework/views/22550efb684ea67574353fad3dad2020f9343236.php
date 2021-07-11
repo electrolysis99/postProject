@@ -1,3 +1,11 @@
+<?php
+use App\Models\Country;
+
+$countries = Country::all();
+
+?>
+
+
 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.form-section','data' => ['submit' => 'updateProfileInformation']]); ?>
 <?php $component->withName('jet-form-section'); ?>
@@ -343,25 +351,21 @@
         <!-- Country -->
         <div class="col-span-6 sm:col-span-4">
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.label','data' => ['for' => 'country','value' => ''.e(__('Gender')).'']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.label','data' => ['for' => 'country','value' => ''.e(__('Country')).'']]); ?>
 <?php $component->withName('jet-label'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['for' => 'country','value' => ''.e(__('Gender')).'']); ?>
+<?php $component->withAttributes(['for' => 'country','value' => ''.e(__('Country')).'']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-            
             <select name="country" id="country" class="inline-flex items-center border text-l leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition" wire:model.defer="state.country">
-                <option value="1">Malaysia</option>
-                <option value="2">Singapore</option>
-                <option value="3">Indonesia</option>
-                <option value="4">Thailand</option>
-                <option value="5">Brunei</option>
-                <option value="6">Cambodia</option>
+                <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option <?php echo e($country == @session('country') || $country == 'Malaysia' ? 'selected' : ''); ?>><?php echo e($country->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'jetstream::components.input-error','data' => ['for' => 'name','class' => 'mt-2']]); ?>
